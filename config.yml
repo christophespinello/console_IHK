@@ -1,0 +1,3 @@
+baudrate: 115200
+comport: COM41
+debug: true
