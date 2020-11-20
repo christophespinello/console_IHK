@@ -17,7 +17,8 @@ class Console_GUI_IHK(tk.Tk):
         
 #        self.root = tk.Tk() # Création de la fenêtre racine
         self.title('ConsoleGUI')
-        self.geometry("720x480")
+        self.attributes('-fullscreen', True)
+#        self.geometry("720x480")
 
         self.json_filename = JSON_FILENAME
     
