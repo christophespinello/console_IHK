@@ -100,7 +100,7 @@ class Console_GUI_IHK(tk.Tk):
         self.button_clear = tk.Button(self.l_command,text='CLEAR')
         self.button_clear.grid(row=0, column=1,sticky=tk.W+tk.E,padx=20)
 
-        self.button_quit = tk.Button(self.l_command,text='QUIT')
+        self.button_quit = tk.Button(self.l_command,text='QUIT',command=self.quit)
         self.button_quit.grid(row=0, column=2,sticky=tk.W+tk.E,padx=20)
  
         self.queue = queue.Queue()
@@ -149,6 +149,9 @@ class Console_GUI_IHK(tk.Tk):
     def event_key_return(self,event):
         self.send()
         
+    def quit(self) :
+        self.quit()  
+          
 if __name__ == '__main__':
     app=Console_GUI_IHK()
     app.mainloop() 
