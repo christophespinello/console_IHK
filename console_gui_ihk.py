@@ -167,9 +167,15 @@ class Console_GUI_IHK(tk.Tk):
         if self.queueSend.qsize():
             try:
                 new=self.queueSend.get()
-                self.readThread.send_frame(new)
-                self.textzone.insert(tk.END,new,"send")
-                self.textzone.see(tk.END)
+                str_cmd = new.split(" ")
+                if (str_cmd[0] == "SLEEP") :
+                    self.textzone.insert(tk.END,new,"comment")
+                    self.textzone.see(tk.END)
+                    time.sleep(int(str_cmd[1]))
+                else :
+                    self.readThread.send_frame(new)
+                    self.textzone.insert(tk.END,new,"send")
+                    self.textzone.see(tk.END)
             except self.queueSend.Empty:
                 pass
         self.after(100, self.processConsole)
