@@ -74,6 +74,7 @@ class Console_GUI_IHK(tk.Tk):
             self.listbox.insert(tk.END,macro['command'] + "(" + macro['description'] + ")")
  
         self.scroll_macros.config(command = self.listbox.yview)
+        self.listbox.bind('<Double-Button-1>',self.event_key_return)
          
 #================================================================
 # LabelFrame Activite        
@@ -178,9 +179,12 @@ class Console_GUI_IHK(tk.Tk):
                     self.textzone.see(tk.END)
             except self.queueSend.Empty:
                 pass
+        else :
+            self.button_send['text'] = "SEND" 
         self.after(100, self.processConsole)
       
     def send(self):
+        self.button_send['text'] = "STOP" 
         if self.entry.get() == "":
             if len(self.listbox.curselection()) == 0 :
                 self.textzone.insert(tk.END,"No command to send" + "\n","error")
