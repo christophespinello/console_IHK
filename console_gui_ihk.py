@@ -162,6 +162,7 @@ class Console_GUI_IHK(tk.Tk):
                 new=self.queue.get()
                 self.textzone.insert(tk.END,new,"receive")
                 self.textzone.see(tk.END)
+                self.textzone.update()
 #                self.textzone.see(tk.END)
             except self.queue.Empty:
                 pass
@@ -172,11 +173,13 @@ class Console_GUI_IHK(tk.Tk):
                 if (str_cmd[0] == "SLEEP") :
                     self.textzone.insert(tk.END,new,"comment")
                     self.textzone.see(tk.END)
+                    self.textzone.update()
                     time.sleep(int(str_cmd[1]))
                 else :
                     self.readThread.send_frame(new)
                     self.textzone.insert(tk.END,new,"send")
                     self.textzone.see(tk.END)
+                    self.textzone.update()
             except self.queueSend.Empty:
                 pass
         else :
