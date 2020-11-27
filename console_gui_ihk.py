@@ -94,6 +94,7 @@ class Console_GUI_IHK(tk.Tk):
         self.textzone.tag_config('receive', foreground="green")
         self.textzone.tag_config('comment', foreground="black")
         self.textzone.tag_config('error', foreground="red")
+        self.textzone.tag_config('macro', foreground="orange")
  
 #================================================================
 # LabelFrame Commande        
@@ -130,7 +131,6 @@ class Console_GUI_IHK(tk.Tk):
                 self.textzone.insert(tk.END,new,"receive")
                 self.textzone.see(tk.END)
                 self.textzone.update()
-#                self.textzone.see(tk.END)
             except self.queue.Empty:
                 pass
         if self.queueSend.qsize():
@@ -169,7 +169,7 @@ class Console_GUI_IHK(tk.Tk):
         i = 0
         for macro in self.macros :
             if (i == index) :
-                self.textzone.insert(tk.END,"Macro " + macro['command'] + "\n","comment")
+                self.textzone.insert(tk.END,"Macro " + macro['command'] + "\n","macro")
                 for action in macro['action'] :
                     self.queueSend.put(action + "\n")                   
             i = i+1
