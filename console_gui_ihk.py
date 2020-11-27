@@ -15,9 +15,7 @@ class Console_GUI_IHK(tk.Tk):
     def __init__(self) :
         tk.Tk.__init__(self)
         
-#        self.root = tk.Tk() # Création de la fenêtre racine
         self.title('ConsoleGUI')
-#        self.attributes('-fullscreen', True)
         self.geometry("720x480")
 
         self.json_filename = JSON_FILENAME
@@ -34,16 +32,10 @@ class Console_GUI_IHK(tk.Tk):
         self.grid_rowconfigure(0, weight=1)
         
         self.l_dialogue = tk.LabelFrame(self, text="Dialog")
-#         self.l_dialogue.pack(fill = tk.BOTH)
         self.l_dialogue.grid(row=0, column=0,sticky=tk.N+tk.S+tk.E+tk.W)
-
-#        self.l_actions = tk.LabelFrame(self, text="Actions")
-#        self.l_actions.grid(row=0, column=1,sticky=tk.W+tk.E+tk.N+tk.S)
 
         self.l_command = tk.LabelFrame(self, text="Commands", padx=10, pady=10)
         self.l_command.grid(row=0, column=1,sticky=tk.N+tk.S+tk.E+tk.W)
-#         self.l_command.pack(fill = tk.BOTH)
-#         self.l_command.pack(fill=tk.BOTH, expand=tk.YES)
 
 #================================================================
 # LabelFrame dans dialogue        
@@ -67,7 +59,6 @@ class Console_GUI_IHK(tk.Tk):
          
 # Liste des macros        
         self.listbox = tk.Listbox(self.l_macros,yscrollcommand=self.scroll_macros,height=5)
-#        self.listbox.grid(row=1, column=0,sticky=tk.W+tk.E)
         self.listbox.pack(fill=tk.X)
  
         for macro in self.macros :
@@ -77,59 +68,36 @@ class Console_GUI_IHK(tk.Tk):
         self.listbox.bind('<Double-Button-1>',self.event_key_return)
          
 #================================================================
-# LabelFrame Activite        
-#================================================================
-#       self.l_activite = tk.LabelFrame(self, text="Activite", padx=10, pady=10)
-#       self.l_activite.grid(row=1, column=0)
-#       self.l_activite.pack(fill=tk.X, expand=tk.YES)
- 
-#================================================================
 # LabelFrame Envoi        
 #================================================================
         self.l_envoi = tk.LabelFrame(self.l_dialogue, text="Envoi", padx=2, pady=2)
         self.l_envoi.grid(row=2, column=0,sticky=tk.W+tk.E)
-#        self.l_envoi.pack(fill=tk.X, expand=tk.YES)
          
         #Partie envoi
         self.entry = tk.Entry(self.l_envoi)
         self.entry.pack(fill=tk.BOTH)
-        #entry.pack(fill=X, expand=YES)
-        #entry.pack(fill = BOTH,expand=YES)
          
 #================================================================
 # LabelFrame Dialogue        
 #================================================================
-#        self.l_traffic = tk.LabelFrame(self.l_activite, text="Dialogue", padx=10, pady=10)
         self.l_traffic = tk.LabelFrame(self.l_dialogue, text="Communication receive")
         self.l_traffic.grid(row=3, column=0,sticky=tk.W+tk.E)
-#        self.l_traffic.pack(fill=tk.X, expand=tk.YES)
          
         # Vertical (y) Scroll Bar
         self.scroll_textzone = tk.Scrollbar(self.l_traffic)
         self.scroll_textzone.pack(side=tk.RIGHT, fill=tk.Y)
  
         self.textzone = tk.Text(self.l_traffic,height=10,width=self.entry.winfo_width(), yscrollcommand=self.scroll_textzone.set)
-#         self.textzone = tk.Text(self.l_traffic, yscrollcommand=self.scroll_textzone.set)
-#        self.textzone = tk.Text(self.l_traffic, yscrollcommand=self.scroll_textzone.set)
-#        self.textzone = tk.Text(self.l_traffic)
-#        self.textzone.grid(row=0, column=0,sticky=tk.W+tk.E)
-#        self.textzone = tk.Text(self.l_traffic,height=10, state=tk.NORMAL)
-#         self.textzone.grid(row=0, column=0,sticky=tk.W+tk.E)
         self.textzone.pack(fill = tk.BOTH,expand=tk.YES)
-#         self.textzone.pack(fill=tk.BOTH)
  
         self.textzone.tag_config('send', foreground="blue")
         self.textzone.tag_config('receive', foreground="green")
         self.textzone.tag_config('comment', foreground="black")
         self.textzone.tag_config('error', foreground="red")
  
-      
-#         self.scroll_textzone.config(command = self.textzone.yview)
-         
 #================================================================
 # LabelFrame Commande        
 #================================================================
- 
         self.l_command.grid_rowconfigure(0, weight=1)
         self.l_command.grid_rowconfigure(1, weight=1)
         self.l_command.grid_rowconfigure(2, weight=1)
@@ -138,7 +106,6 @@ class Console_GUI_IHK(tk.Tk):
         self.button_send = tk.Button(self.l_command,text="SEND",command=self.send)
         self.button_send.grid(row=0, column=0,sticky=tk.W+tk.E,padx=20)
         self.bind('<Return>',self.event_key_return)
-        #button_send.pack()
  
         self.button_options = tk.Button(self.l_command,text='OPTIONS')
         self.button_options.grid(row=1, column=0,sticky=tk.W+tk.E,padx=20)
@@ -205,12 +172,6 @@ class Console_GUI_IHK(tk.Tk):
                 self.textzone.insert(tk.END,"Macro " + macro['command'] + "\n","comment")
                 for action in macro['action'] :
                     self.queueSend.put(action + "\n")                   
-#                     if (action[:5] == "SLEEP") :
-#                         time.sleep(int(action[6:]))
-#                         self.textzone.insert(tk.END,action + "\n","comment")
-#                     else :                             
-#                        self.readThread.send_frame(action)
-#                        self.textzone.insert(tk.END,action + "\n","send")
             i = i+1
         
     def event_key_return(self,event):
@@ -224,5 +185,5 @@ class Console_GUI_IHK(tk.Tk):
           
 if __name__ == '__main__':
     app=Console_GUI_IHK()
-    app.mainloop() 
-    # Lancement de la boucle principale
+    app.mainloop()     # Lancement de la boucle principale
+    
