@@ -69,14 +69,12 @@ class IHK_Serial(object):
         if (self.debug) :
             self.config['debug'] = True
         save_config(self.config, CONFIG_FILENAME)
-        print(bcolors.WARNING+"Configuration saved"+bcolors.INFO)
+        print("Configuration saved")
             
     def configure(self):
-        print(bcolors.WARNING)
         print(".........................................")
         print("Serial port configuration")
         print(".........................................")
-        print(bcolors.ENDC)
         print("List of serial ports ...")
         results = serial_ports()
         config = load_config(CONFIG_FILENAME)
@@ -84,7 +82,7 @@ class IHK_Serial(object):
         for i in (range(1, len(results) + 1)) :
             print("[" + str(i) + '] : ' + results[i - 1])
         try:
-            selected = input(bcolors.ACTION+"Type the Uart port to use and press <Enter> : "+bcolors.ENDC)
+            selected = input("Type the Uart port to use and press <Enter> : ")
         except ValueError:
             pass
         if (selected != "0") and (selected != ""):
