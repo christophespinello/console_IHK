@@ -8,7 +8,7 @@ import queue
 
 CONFIG_FILENAME = './config.yml'
 
-DEBUG_NO_COMM = True
+DEBUG_NO_COMM = False
 
 ERR_IHK_SERIAL_OK = 0
 ERR_IHK_SERIAL_NO_FRAME = -1
@@ -147,6 +147,5 @@ class IHK_Serial(object):
         self.receive_alive_frame()
         
 
-
-
-    
+    def exit(self):
+        self.quit()

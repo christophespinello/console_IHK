@@ -1,3 +1,5 @@
-baudrate: 115200
+baudrate: 9600
 comport: COM41
 debug: true
+json_filename : ./wrp_tests.json
+frame_type : SUEZ
